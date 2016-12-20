@@ -9,7 +9,8 @@ module.exports = {
     },
     plugins: [
         new CopyWebpackPlugin([
-            { from: './src/index.html' }
+            { from: './src/index.html' },
+            { from: './node_modules/bootstrap/dist/css/bootstrap.min.css', to: __dirname + "/dist/libs"}
         ]),
         new ExtractTextPlugin('styles.css')
     ],
