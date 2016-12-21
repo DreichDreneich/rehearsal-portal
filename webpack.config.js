@@ -1,5 +1,6 @@
 var CopyWebpackPlugin = require('copy-webpack-plugin');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
+var webpack = require('webpack');
 
 module.exports = {
     entry: "./src/main.tsx",
@@ -12,7 +13,12 @@ module.exports = {
             { from: './src/index.html' },
             { from: './node_modules/bootstrap/dist/css/bootstrap.min.css', to: __dirname + "/dist/libs"}
         ]),
-        new ExtractTextPlugin('styles.css')
+        new ExtractTextPlugin('styles.css'),
+        new webpack.ProvidePlugin({
+            $: "jquery/dist/jquery.min.js",
+            jQuery: "jquery/dist/jquery.min.js",
+            "window.jQuery": "jquery/dist/jquery.min.js"
+        })
     ],
     // Enable sourcemaps for debugging webpack's output.
     devtool: "source-map",
