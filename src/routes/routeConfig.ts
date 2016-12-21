@@ -17,6 +17,10 @@ export default () : IRoute[]=> {
         {
             link: "news",
             name: "Новости"
+        },
+        {
+            link: "cabinet",
+            name: "Личный кабинет"
         }
     ];
 }

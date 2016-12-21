@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {Link} from 'react-router';
 
-export interface IMainMenuProps {
+interface IMainMenuProps {
     title: string;
 
     routeConfig: IRoute[];
