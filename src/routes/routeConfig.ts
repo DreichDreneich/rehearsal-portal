@@ -1,3 +1,5 @@
+import {IRoute} from '../models';
+
 export default () : IRoute[]=> {
     return [
         {
