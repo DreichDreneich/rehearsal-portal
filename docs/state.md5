@@ -1,0 +1,8 @@
+//Модель общего стейта
+state = {
+    cabinet: {
+        bases: {
+            rooms  
+        }
+    }
+}

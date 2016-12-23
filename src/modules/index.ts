@@ -1,4 +1,4 @@
-import {Cabinet} from './cabinet/cabinet';
+import Cabinet from './cabinet/cabinet';
 
 export {
     Cabinet

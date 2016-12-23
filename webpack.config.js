@@ -1,6 +1,7 @@
 var CopyWebpackPlugin = require('copy-webpack-plugin');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var webpack = require('webpack');
+var path = require('path');
 
 module.exports = {
     entry: "./src/main.tsx",
@@ -24,6 +25,7 @@ module.exports = {
     devtool: "source-map",
 
     resolve: {
+        root: path.resolve('./src'),
         extensions: ["", ".webpack.js", ".web.js", ".ts", ".tsx", ".js", "less"]
     },
 

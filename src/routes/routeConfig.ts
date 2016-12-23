@@ -1,6 +1,6 @@
 import {IRoute} from '../models';
 
-export default () : IRoute[]=> {
+export const routeConfig = () : IRoute[]=> {
     return [
         {
             link: "ribbon",
@@ -19,10 +19,19 @@ export default () : IRoute[]=> {
         {
             link: "news",
             name: "Новости"
-        },
-        {
-            link: "cabinet",
-            name: "Личный кабинет"
         }
     ];
+}
+
+export const rightSection = () :(IRoute | JSX.Element) [] => {
+    let cabinetLink : IRoute = {
+        link: "cabinet",
+        name: "Личный кабинет"
+    }
+
+    return (
+        [
+            cabinetLink
+        ]
+    )
 }
