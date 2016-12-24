@@ -1,6 +1,13 @@
-import {getBaseUserInfo, getBaseRooms} from './cabinetApi';
+import {
+    getBaseUserInfo, 
+    getBasesByBaseUserId, 
+    getRoomsByBaseId, 
+    getBaseById
+} from './cabinetApi';
 
 export {
     getBaseUserInfo,
-    getBaseRooms
+    getBasesByBaseUserId,
+    getRoomsByBaseId,
+    getBaseById
 }

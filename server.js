@@ -12,5 +12,5 @@ var server = new webpackDevServer(compiler, {
     noInfo: false,
 });
 
-server.listen(8080, "localhost", function() {
+server.listen(3000, "localhost", function() {
 });

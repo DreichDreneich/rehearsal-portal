@@ -2,27 +2,24 @@ import * as React from 'react';
 import {connect} from 'react-redux';
 import {Link} from 'react-router';
 
-import {IBaseUser} from 'models';
+import {IBaseUser, IBase, IRoom} from 'models';
+import {cloneReactElement} from 'helpers';
 import {baseUserInfoLoad} from './actions/creators';
-import {Row, Label, SimpleButton} from 'components';
+import {Row, Label, SimpleButton, Panel} from 'components';
 import {CabinetBaseRibbon} from './components/cabinetBaseRibbon';
 
 interface IProps {
     baseUser: IBaseUser;
     dispatch: any;
+    bases: IBase[];
 }
 
-export interface IState {
-    baseUser: IBaseUser;
-}
-
-class Cabinet extends React.Component<IProps, IState> {
+class Cabinet extends React.Component<IProps, null> {
     componentWillMount = () => {
         this.props.dispatch(baseUserInfoLoad("1"));
     }
 
     renderPhones = () => {
-        debugger;
         if(this.props.baseUser.phones) {
             return (
                 <Row 
@@ -42,16 +39,18 @@ class Cabinet extends React.Component<IProps, IState> {
     renderBaseUserInfo = () => {
         return (
             <div className="col-md-5">
-                <div className="panel panel-default">
-                    <div className="panel-body">
-                        <img className="media-object img" src={this.props.baseUser.pic} />
-                        <Row 
-                            title="Название"
-                            content={this.props.baseUser.name}
-                        />
-                        {this.renderPhones()}
-                    </div>
-                </div>
+                <Panel>
+                    {
+                        this.props.baseUser.pic ? 
+                            <img className="media-object img" src={this.props.baseUser.pic} /> : 
+                            null 
+                    }
+                    <Row 
+                        title="Название"
+                        content={this.props.baseUser.name}
+                    />
+                    {this.renderPhones()}
+                </Panel>
             </div>
         )
     }
@@ -59,35 +58,42 @@ class Cabinet extends React.Component<IProps, IState> {
     renderBases = () => {
         return (
             <div className="col-md-7">
-                <div className="panel panel-default">
-                    <div className="panel-body">
-                        {this.props.baseUser.bases ?
-                            <CabinetBaseRibbon bases={this.props.baseUser.bases}/> :
-                            <SimpleButton title="Добавить базу"/>
-                        }
-                        
-                    </div>
-                </div>
+                {
+                    this.props.bases ?
+                        <CabinetBaseRibbon bases={this.props.bases}/> :
+                        <SimpleButton title="Добавить базу"/>
+                }
+            </div>
+        )
+    }
+
+    renderBaseUser = () => {
+        return (
+            <div>
+                {this.props.baseUser ? this.renderBaseUserInfo() : <h1>Loading...</h1>}
+                {this.props.bases ? this.renderBases() : <h1>Loading...</h1>}
             </div>
         )
     }
 
     render() {
         return (
-            <div className="panel panel-info">
-                <div className="panel-body">
-                    <h2> Личный кабинет </h2>
-                    {this.renderBaseUserInfo()}
-                    {this.renderBases()}
-                </div>
-            </div>
+            <Panel>
+                <h2> Личный кабинет </h2>
+                {
+                    this.props.children ? 
+                        cloneReactElement(this.props.children, {dispatch: this.props.dispatch}) : 
+                        this.renderBaseUser()
+                }
+            </Panel>
         )
     }
 }
 
 const mapStateToProps = (state) => {
     return {
-        baseUser: state.cabinet
+        baseUser: state.cabinet.baseUser,
+        bases: state.cabinet.bases
     }
 }
 

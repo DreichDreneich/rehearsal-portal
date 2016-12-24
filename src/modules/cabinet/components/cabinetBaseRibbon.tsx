@@ -1,6 +1,6 @@
 import * as React from 'react';
-import {IBase} from 'models';
-import {Row} from 'components';
+import {IBase, UIContextType} from 'models';
+import {Row, Panel, SimpleButton} from 'components';
 
 interface IProps {
     bases: IBase[];
@@ -13,17 +13,18 @@ interface IState {
 export class CabinetBaseRibbon extends React.Component<IProps, IState> {
     renderBase(base: IBase, key: any) {
         return (
-            <div key={key} className="panel panel-default">
-                <div className="panel-body">
-                    <div className="col-md-4">
-                        <img className="media-object img" src={base.pic}/>
-                    </div>
-                    <div className="col-md-8">
-                        <Row title="Название" content={base.name}/>
-                        <Row title="Email" content={base.email}/>
-                    </div>
+            <Panel key={key} type={UIContextType.INFO}>
+                <div className="col-md-4">
+                    <img className="media-object img" src={base.pic}/>
                 </div>
-            </div>
+                <div className="col-md-8">
+                    <Row title="Название" content={base.name}/>
+                    <Row title="Email" content={base.email}/>
+                </div>
+                <div className="col-md-12">
+                    <SimpleButton title="Подробнее" link={'/cabinet/base/' + base.id} />
+                </div>
+            </Panel>
         )
     }
 
