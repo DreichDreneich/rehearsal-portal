@@ -76,19 +76,22 @@ let rooms: IRoom[] = [
         id: "1",
         name: "Curaga",
         area: 12,
-        baseId: "3"
+        baseId: "3",
+        coverPic: "./static/basePic.jpg"
     },
     {
         id: "2",
         name: "Kompot",
         area: 22,
-        baseId: "3"
+        baseId: "3",
+        coverPic: "./static/basePic.jpg"
     },
     {
         id: "3",
         name: "Bolshaya",
         area: 25,
-        baseId: "1"
+        baseId: "1",
+        coverPic: "./static/basePic.jpg"
     },
     {
         id: "4",
@@ -100,13 +103,15 @@ let rooms: IRoom[] = [
         id: "5",
         name: "Medium",
         area: 25,
-        baseId: "1"
+        baseId: "1",
+        coverPic: "./static/basePic.jpg"
     },
     {
         id: "6",
         name: "Kefir",
         area: 25,
-        baseId: "2"
+        baseId: "2",
+        coverPic: "./static/basePic.jpg"
     },
     {
         id: "7",

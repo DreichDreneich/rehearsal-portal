@@ -3,9 +3,10 @@ import {connect} from 'react-redux';
 import {bindActionCreators, Dispatch, Action} from 'redux';
 
 import {IBase, IRoom} from 'models';
-import {Row} from 'components';
+import {Row, Panel} from 'components';
 
 import {baseInfoLoad} from '../actions/creators';
+import {CabinetRoomsRibbon} from './cabinetRoomsRibbon';
 
 interface IProps {
     base: IBase;
@@ -31,12 +32,44 @@ class Base extends React.Component<IProps, IState> {
         this.props.dispatch(baseInfoLoad(this.props.params.baseId));
     }
 
+    renderBaseInfo() {
+        let result: JSX.Element = null;
+        let {base} = this.props;
+
+        if(base) {
+            result = (
+                <Panel>
+                    {base.pic ? <img className="img" src={base.pic}/> : null}
+                    <Row title="Название" content={base.name}/>
+                    <Row title="Email" content={base.email}/>
+                </Panel>
+            ) 
+        } else {
+            result = <h2>Loading...</h2>
+        }
+
+        return result;
+    }
+
+    renderRoomRibbon() {
+        let result: JSX.Element = null;
+        let {rooms} = this.props;
+
+        return rooms ?
+            result = <CabinetRoomsRibbon rooms={rooms}/> :
+            <h2>Loading...</h2>
+    }
+
     render() {
         debugger;
         return (
             <div>
-                {!this.props.base || this.props.rooms ? <h2>Loading</h2> :
-                    this.props.base.name}
+                <div className="col-md-5">
+                    {this.renderBaseInfo()}
+                </div>
+                <div className="col-md-7">
+                    {this.renderRoomRibbon()}
+                </div>
             </div>
         )
     }
