@@ -15,6 +15,7 @@ import {
 } from 'api';
 
 const baseUserInfoLoad = (userId: string) => {
+    debugger;
     return (dispatch) => {
         Promise.all([
             getBaseUserInfo(userId),
@@ -27,12 +28,14 @@ const baseUserInfoLoad = (userId: string) => {
 }
 
 const baseInfoLoad = (baseId: string) => {
+    debugger;
     return (dispatch) => {
         Promise.all([
             getBaseById(baseId),
             getRoomsByBaseId(baseId)
         ]).then(result => {
-            dispatch(baseUserInfoLoaded(result[0]));
+            debugger;
+            dispatch(baseLoaded(result[0]));
             dispatch(roomsLoaded(result[1]))
         });
     }
@@ -52,7 +55,7 @@ const basesLoaded = (bases: IBase[]) : IReduxAction => {
     }
 }
 
-const baseLoaded = (base: IBase[]) : IReduxAction => {
+const baseLoaded = (base: IBase) : IReduxAction => {
     return {
         type: types.BASE_INFO_LOADED,
         payload: base

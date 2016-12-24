@@ -80,11 +80,7 @@ class Cabinet extends React.Component<IProps, null> {
         return (
             <Panel>
                 <h2> Личный кабинет </h2>
-                {
-                    this.props.children ? 
-                        cloneReactElement(this.props.children, {dispatch: this.props.dispatch}) : 
-                        this.renderBaseUser()
-                }
+                {this.renderBaseUser()}
             </Panel>
         )
     }

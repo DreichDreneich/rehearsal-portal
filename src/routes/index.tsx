@@ -9,9 +9,8 @@ export class RoutesProvider extends React.Component<null, null> {
         return (
             <Router history={hashHistory} >
                 <Route path="/" component={App} >
-                    <Route path="/cabinet" component={Cabinet} >
-                        <Route path="/cabinet/base/:baseId" component={Base} />
-                    </Route>
+                    <Route path="/cabinet" component={Cabinet} />
+                    <Route path="/cabinet/base/:baseId" component={Base} />
                 </Route>
             </Router>
         )

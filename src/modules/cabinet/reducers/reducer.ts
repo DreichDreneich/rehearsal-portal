@@ -12,7 +12,13 @@ export interface IState {
     }
 }
 
-const cabinet = (state: IState = <any>{}, action: IReduxAction)=> {
+const initialState: any = {
+    currentBase: {},
+    bases: [],
+    baseUser: {}
+}
+
+const cabinet = (state: IState = initialState, action: IReduxAction)=> {
     debugger;
     switch(action.type) {
         case types.BASEUSER_INFO_LOADED:

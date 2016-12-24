@@ -10,20 +10,24 @@ import {baseInfoLoad} from '../actions/creators';
 interface IProps {
     base: IBase;
     rooms: IRoom[];
-    actions: {baseInfoLoad: (string) => any}
     //Приходит из роутера
     params: {
         baseId: string    
     };
     dispatch: any;
+
+    actions: {
+        baseInfoLoad: any
+    }
 }
 
 interface IState {
 
 }
 
-export class Base extends React.Component<IProps, IState> {
+class Base extends React.Component<IProps, IState> {
     componentWillMount() {
+        debugger;
         this.props.dispatch(baseInfoLoad(this.props.params.baseId));
     }
 
@@ -39,10 +43,17 @@ export class Base extends React.Component<IProps, IState> {
 }
 
 const mapStateToProps = (state) => {
+    debugger;
     return {
         base: state.cabinet.currentBase.base,
         rooms: state.cabinet.currentBase.rooms
     }
 }
+
+// function mapDispatchToProps(dispatch) {
+//     return {
+//         actions: bindActionCreators({baseInfoLoad}, dispatch)
+//     }
+// }
 
 export default connect(mapStateToProps)(Base)
