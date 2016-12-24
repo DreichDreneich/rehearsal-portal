@@ -12,7 +12,8 @@ module.exports = {
     plugins: [
         new CopyWebpackPlugin([
             { from: './src/index.html' },
-            { from: './node_modules/bootstrap/dist/css/bootstrap.min.css', to: __dirname + "/dist/libs"}
+            { from: './node_modules/bootstrap/dist/css/bootstrap.min.css', to: __dirname + "/dist/libs"},
+            { from: './src/static', to: __dirname + "/dist/static"}
         ]),
         new ExtractTextPlugin('styles.css'),
         new webpack.ProvidePlugin({

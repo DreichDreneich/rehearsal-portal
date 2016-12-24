@@ -5,4 +5,5 @@ export interface IBase {
     name: string;
     email?: string;
     phones?: string[];
+    pic: string;
 }

@@ -5,4 +5,5 @@ export interface IBaseUser {
     name: string;
     bases?: IBase[];
     phones?: string[];
+    pic?: string;
 }

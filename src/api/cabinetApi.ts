@@ -7,18 +7,21 @@ export const getBaseUserInfo = (userId) => {
             id: "1",
             name: "Hendrix",
             phones: ["89379876542", "80876753723"],
+            pic: "./static/basePic.jpg",
             bases: [
                 {
                     id: "1",
                     name: "Hendrix 1905",
                     email: "hendrix1905@gmail.com",
-                    phones: ["89157867823"]
+                    phones: ["89157867823"],
+                    pic: "./static/basePic.jpg"
                 },
                 {
                     id: "2",
                     name: "Hendrix Savok",
                     email: "hendrix_savok@gmail.com",
-                    phones: ["89167869715"]
+                    phones: ["89167869715"],
+                    pic: "./static/basePic.jpg"
                 }
             ]
         }
