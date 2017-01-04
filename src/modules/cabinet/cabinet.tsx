@@ -2,7 +2,7 @@ import * as React from 'react';
 import {connect} from 'react-redux';
 import {Link} from 'react-router';
 
-import {IBaseUser, IBase, IRoom} from 'models';
+import {IBaseUser, IBase, IRoom, IReduxState} from 'models';
 import {cloneReactElement} from 'helpers';
 import {baseUserInfoLoad} from './actions/creators';
 import {Row, Label, SimpleButton, Panel} from 'components';
@@ -86,7 +86,7 @@ class Cabinet extends React.Component<IProps, null> {
     }
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state: IReduxState) => {
     return {
         baseUser: state.cabinet.baseUser,
         bases: state.cabinet.bases

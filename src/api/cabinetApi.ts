@@ -1,4 +1,5 @@
-import {IBaseUser, IRoom, IBase} from 'models';
+import {IBaseUser, IRoom, IBase, IBasesRibbonFilter} from 'models';
+import {includes} from 'lodash';
 
 export const getBaseUserInfo = (userId: string) => {
     debugger;
@@ -24,7 +25,23 @@ export const getBaseById = (baseId: string) => {
 
 export const getRoomsByBaseId = (baseId: string) => {
     return new Promise<IRoom[]>((resolve, reject) => {
-        let result: IRoom[] = rooms.filter(b => b.baseId == baseId);
+        let result: IRoom[] = rooms.filter(r =>r.baseId == baseId);
+        resolve(result);
+    })
+}
+
+export const getRoomById = (roomId: string) => {
+    return new Promise<IRoom>((resolve, reject) => {
+        let result: IRoom = rooms.find(r => r.id == roomId);
+        resolve(result);
+    })
+}
+
+export const getBasesByFilter = (filter: IBasesRibbonFilter) => {
+    return new Promise<IBase[]>((resolve, reject) => {
+        let result: IBase[] = bases.filter(b => {
+            return includes(b.name, filter.name)
+        })
         resolve(result);
     })
 }
@@ -77,27 +94,54 @@ let rooms: IRoom[] = [
         name: "Curaga",
         area: 12,
         baseId: "3",
-        coverPic: "./static/basePic.jpg"
+        coverPic: "./static/basePic.jpg",
+        pics: [
+            "./static/basePic.jpg",
+            "./static/basePic.jpg",
+            "./static/basePic.jpg",
+            "./static/basePic.jpg",
+            "./static/basePic.jpg",
+            "./static/basePic.jpg"
+        ]
     },
     {
         id: "2",
         name: "Kompot",
         area: 22,
         baseId: "3",
-        coverPic: "./static/basePic.jpg"
+        coverPic: "./static/basePic.jpg",
+        pics: [
+            "./static/basePic.jpg",
+            "./static/basePic.jpg"
+        ]
     },
     {
         id: "3",
         name: "Bolshaya",
         area: 25,
         baseId: "1",
-        coverPic: "./static/basePic.jpg"
+        coverPic: "./static/basePic.jpg",
+        pics: [
+            "./static/basePic.jpg",
+            "./static/basePic.jpg",
+            "./static/basePic.jpg",
+            "./static/basePic.jpg",
+            "./static/basePic.jpg",
+            "./static/basePic.jpg"
+        ]
     },
     {
         id: "4",
         name: "Malaya",
         area: 25,
-        baseId: "1"
+        baseId: "1",
+        pics: [
+            "./static/basePic.jpg",
+            "./static/basePic.jpg",
+            "./static/basePic.jpg",
+            "./static/basePic.jpg",
+            "./static/basePic.jpg"
+        ]
     },
     {
         id: "5",
@@ -111,12 +155,27 @@ let rooms: IRoom[] = [
         name: "Kefir",
         area: 25,
         baseId: "2",
-        coverPic: "./static/basePic.jpg"
+        coverPic: "./static/basePic.jpg",
+        pics: [
+            "./static/basePic.jpg",
+            "./static/basePic.jpg",
+            "./static/basePic.jpg",
+            "./static/basePic.jpg",
+            "./static/basePic.jpg",
+            "./static/basePic.jpg"
+        ]
     },
     {
         id: "7",
         name: "Yellow",
         area: 25,
-        baseId: "2"
+        baseId: "2",
+        pics: [
+            "./static/basePic.jpg",
+            "./static/basePic.jpg",
+            "./static/basePic.jpg",
+            "./static/basePic.jpg",
+
+        ]
     }
 ]

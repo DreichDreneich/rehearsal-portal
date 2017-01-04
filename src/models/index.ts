@@ -4,6 +4,12 @@ import {IBaseUser} from './common/IBaseUser';
 import {IBase} from './common/IBase';
 import {IReduxAction} from './common/IReduxAction';
 import {UIContextType} from './common/UIContextType';
+import {
+    IReduxState, 
+    ICabinetState,
+    IBasesRibbonState
+} from './IReduxState';
+import {IBasesRibbonFilter} from './basesRibbon/IBasesRibbonFilter';
 
 export {
     IRoute,
@@ -11,5 +17,9 @@ export {
     IBase,
     IBaseUser,
     IReduxAction,
-    UIContextType
+    UIContextType,
+    IReduxState,
+    ICabinetState,
+    IBasesRibbonFilter,
+    IBasesRibbonState
 }

@@ -2,7 +2,7 @@ import * as React from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators, Dispatch, Action} from 'redux';
 
-import {IBase, IRoom} from 'models';
+import {IBase, IRoom, IReduxState} from 'models';
 import {Row, Panel} from 'components';
 
 import {baseInfoLoad} from '../actions/creators';
@@ -53,10 +53,10 @@ class Base extends React.Component<IProps, IState> {
 
     renderRoomRibbon() {
         let result: JSX.Element = null;
-        let {rooms} = this.props;
+        let {rooms, base} = this.props;
 
         return rooms ?
-            result = <CabinetRoomsRibbon rooms={rooms}/> :
+            result = <CabinetRoomsRibbon rooms={rooms} baseId={base.id}/> :
             <h2>Loading...</h2>
     }
 
@@ -75,8 +75,7 @@ class Base extends React.Component<IProps, IState> {
     }
 }
 
-const mapStateToProps = (state) => {
-    debugger;
+const mapStateToProps = (state: IReduxState) => {
     return {
         base: state.cabinet.currentBase.base,
         rooms: state.cabinet.currentBase.rooms

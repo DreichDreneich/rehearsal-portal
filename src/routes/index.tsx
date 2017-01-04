@@ -2,7 +2,11 @@ import * as React from 'react';
 import { Router, hashHistory, Route, IndexRoute } from 'react-router';
 
 import {App} from '../app';
-import {Cabinet, Base} from '../modules';
+import {
+    Cabinet, 
+    Base, 
+    Room
+} from '../modules';
 
 export class RoutesProvider extends React.Component<null, null> {
     render() {
@@ -11,6 +15,8 @@ export class RoutesProvider extends React.Component<null, null> {
                 <Route path="/" component={App} >
                     <Route path="/cabinet" component={Cabinet} />
                     <Route path="/cabinet/base/:baseId" component={Base} />
+                    <Route path="/cabinet/base/:baseId/room/:roomId" component={Room} />
+                    <Route path="/bases" component={Room} />
                 </Route>
             </Router>
         )

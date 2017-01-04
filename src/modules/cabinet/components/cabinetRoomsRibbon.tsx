@@ -3,6 +3,7 @@ import {IRoom, UIContextType} from 'models';
 import {Row, Panel, SimpleButton} from 'components';
 
 interface IProps {
+    baseId: string;
     rooms: IRoom[];
 }
 
@@ -31,7 +32,7 @@ export class CabinetRoomsRibbon extends React.Component<IProps, IState> {
                     <Row title="Название" content={room.name}/>
                 </div>
                 <div className="col-md-12">
-                    <SimpleButton title="Подробнее" link={'/cabinet/room/' + room.id} />
+                    <SimpleButton title="Подробнее" link={'/cabinet/base/' + this.props.baseId + '/room/' + room.id} />
                 </div>
             </Panel>
         )

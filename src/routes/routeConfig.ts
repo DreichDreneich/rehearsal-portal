@@ -3,18 +3,8 @@ import {IRoute} from '../models';
 export const routeConfig = () : IRoute[]=> {
     return [
         {
-            link: "ribbon",
-            name: "Лента",
-            childrens: [
-                {
-                    link: "ribbon",
-                    name: "Лента1"
-                },
-                {
-                    link: "ribbon",
-                    name: "Лента2"
-                }
-            ]
+            link: "bases",
+            name: "Репетиционные базы",
         },
         {
             link: "news",

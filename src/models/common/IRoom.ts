@@ -4,4 +4,5 @@ export interface IRoom {
     name: string;
     area: number;
     coverPic?: string;
+    pics?: string[];
 }

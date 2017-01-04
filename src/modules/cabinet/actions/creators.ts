@@ -11,11 +11,11 @@ import {
     getBaseUserInfo, 
     getBasesByBaseUserId,
     getBaseById,
+    getRoomById,
     getRoomsByBaseId
 } from 'api';
 
 const baseUserInfoLoad = (userId: string) => {
-    debugger;
     return (dispatch) => {
         Promise.all([
             getBaseUserInfo(userId),
@@ -28,7 +28,6 @@ const baseUserInfoLoad = (userId: string) => {
 }
 
 const baseInfoLoad = (baseId: string) => {
-    debugger;
     return (dispatch) => {
         Promise.all([
             getBaseById(baseId),
@@ -38,6 +37,16 @@ const baseInfoLoad = (baseId: string) => {
             dispatch(baseLoaded(result[0]));
             dispatch(roomsLoaded(result[1]))
         });
+    }
+}
+
+const roomInfoLoad = (roomId: string) => {
+    debugger;
+    return (dispatch) => {
+        getRoomById(roomId).
+        then(result => {
+            dispatch(roomInfoLoaded(result));
+        })
     }
 }
 
@@ -69,11 +78,19 @@ const roomsLoaded = (rooms: IRoom[]) : IReduxAction => {
     }
 }
 
+const roomInfoLoaded = (room: IRoom) : IReduxAction => {
+    return {
+        type: types.ROOM_INFO_LOADED,
+        payload: room
+    }
+}
+
 export {
     baseUserInfoLoad,
     baseUserInfoLoaded,
     basesLoaded,
     roomsLoaded,
     baseLoaded,
-    baseInfoLoad
+    baseInfoLoad,
+    roomInfoLoad
 }
