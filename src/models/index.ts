@@ -7,9 +7,9 @@ import {UIContextType} from './common/UIContextType';
 import {
     IReduxState, 
     ICabinetState,
-    IBasesRibbonState
+    IRoomsRibbonState
 } from './IReduxState';
-import {IBasesRibbonFilter} from './basesRibbon/IBasesRibbonFilter';
+import {IRoomsRibbonFilter} from './basesRibbon/IBasesRibbonFilter';
 
 export {
     IRoute,
@@ -20,6 +20,6 @@ export {
     UIContextType,
     IReduxState,
     ICabinetState,
-    IBasesRibbonFilter,
-    IBasesRibbonState
+    IRoomsRibbonFilter,
+    IRoomsRibbonState
 }

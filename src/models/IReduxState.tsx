@@ -1,8 +1,8 @@
-import {IBase, IBaseUser, IRoom, IBasesRibbonFilter} from 'models';
+import {IBase, IBaseUser, IRoom, IRoomsRibbonFilter} from 'models';
 
 export interface IReduxState {
     cabinet: ICabinetState;
-    basesRibbon: IBasesRibbonState;
+    roomsRibbon: IRoomsRibbonState;
 }
 
 export interface ICabinetState {
@@ -15,8 +15,9 @@ export interface ICabinetState {
     currentRoom: IRoom;
 }
 
-export interface IBasesRibbonState {
+export interface IRoomsRibbonState {
     bases: IBase[];
-    filter: IBasesRibbonFilter;
+    rooms: IRoom[];
+    filter: IRoomsRibbonFilter;
     loading: boolean;
 }

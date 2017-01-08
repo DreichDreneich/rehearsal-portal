@@ -3,8 +3,8 @@ import {IRoute} from '../models';
 export const routeConfig = () : IRoute[]=> {
     return [
         {
-            link: "bases",
-            name: "Репетиционные базы",
+            link: "ribbon",
+            name: "Поиск комнаты",
         },
         {
             link: "news",

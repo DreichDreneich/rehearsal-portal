@@ -4,7 +4,7 @@ import {
     getRoomsByBaseId, 
     getBaseById,
     getRoomById,
-    getBasesByFilter
+    getRoomsByFilter
 } from './cabinetApi';
 
 export {
@@ -13,5 +13,5 @@ export {
     getRoomsByBaseId,
     getBaseById,
     getRoomById,
-    getBasesByFilter
+    getRoomsByFilter
 }

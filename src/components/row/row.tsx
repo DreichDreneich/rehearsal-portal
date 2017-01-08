@@ -2,7 +2,7 @@ import * as React from 'react';
 
 interface IProps {
     title: string;
-    content: JSX.Element[] | string | number;
+    content: JSX.Element| JSX.Element[] | string | number;
 }
 
 export class Row extends React.Component<IProps, null> {

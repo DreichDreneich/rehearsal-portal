@@ -4,7 +4,7 @@ import {Link} from 'react-router';
 interface IProps {
     title: string;
     badge?: string;
-    onChange?: () => void;
+    onClick?: () => void;
     link?: string;
 }
 
@@ -14,7 +14,7 @@ export class SimpleButton extends React.Component<IProps, null> {
             <button 
                 type="button" 
                 className="btn btn-default"
-                onClick={this.props.onChange}>
+                onClick={this.props.onClick}>
                 {this.props.title}
                 <span className="badge">{this.props.badge}</span>
             </button>

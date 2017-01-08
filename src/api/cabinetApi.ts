@@ -1,5 +1,5 @@
-import {IBaseUser, IRoom, IBase, IBasesRibbonFilter} from 'models';
-import {includes} from 'lodash';
+import {IBaseUser, IRoom, IBase, IRoomsRibbonFilter} from 'models';
+import {includes, take, isEmpty} from 'lodash';
 
 export const getBaseUserInfo = (userId: string) => {
     debugger;
@@ -37,12 +37,34 @@ export const getRoomById = (roomId: string) => {
     })
 }
 
-export const getBasesByFilter = (filter: IBasesRibbonFilter) => {
-    return new Promise<IBase[]>((resolve, reject) => {
-        let result: IBase[] = bases.filter(b => {
-            return includes(b.name, filter.name)
+export const getRoomsByFilter = (filter: IRoomsRibbonFilter) => {
+    return new Promise<[IRoom[], IBase[]]>((resolve, reject) => {
+        let filteredRooms: IRoom[] = null;
+
+        if(isEmpty(filter)) {
+            filteredRooms = take(rooms, 50);
+        } else {
+            filteredRooms = rooms.filter(r => {
+                return includes(r.name, filter.name)
+            });
+        }
+
+        let filteredBases: IBase[] = bases.filter(b => {
+            let includeName = filter && includes(b.name, filter.baseName);
+            let inCity = filter && includes(b.city, filter.city);
+            let haveFilteredRooms = filteredRooms && filteredRooms.map(r => r.baseId).find(bId => bId === b.id);
+
+            
+
+            let result = includeName || inCity || haveFilteredRooms;
+            if(result && !haveFilteredRooms) {
+                filteredRooms = filteredRooms.concat(rooms.filter(r =>r.baseId == b.id));
+            }
+
+            return result;
         })
-        resolve(result);
+
+        resolve([filteredRooms, filteredBases]);
     })
 }
 

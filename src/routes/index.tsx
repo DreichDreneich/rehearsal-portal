@@ -5,7 +5,8 @@ import {App} from '../app';
 import {
     Cabinet, 
     Base, 
-    Room
+    Room,
+    RoomsRibbon
 } from '../modules';
 
 export class RoutesProvider extends React.Component<null, null> {
@@ -16,7 +17,7 @@ export class RoutesProvider extends React.Component<null, null> {
                     <Route path="/cabinet" component={Cabinet} />
                     <Route path="/cabinet/base/:baseId" component={Base} />
                     <Route path="/cabinet/base/:baseId/room/:roomId" component={Room} />
-                    <Route path="/bases" component={Room} />
+                    <Route path="/ribbon" component={RoomsRibbon} />
                 </Route>
             </Router>
         )
