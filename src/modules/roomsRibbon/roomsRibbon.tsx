@@ -4,7 +4,7 @@ import {bindActionCreators} from 'redux';
 import {Link} from 'react-router';
 
 import {IRoomsRibbonFilter, IReduxState, IRoom, IBase} from 'models';
-import {Row, Label, SimpleButton, Panel, TextInput} from 'components';
+import {Row, Label, SimpleButton, Panel, TextInput, NumberInput} from 'components';
 import {roomsByFilterLoad} from './actions/creators';
 
 
@@ -44,10 +44,12 @@ class RoomsRibbon extends React.Component<IProps, void> {
 
     handleBaseNameFilterChange = (name: string) => {
         this.props.filter.baseName = name;
+        this.forceUpdate();
     }
 
-    handleAreaFilterChange = (area: string) => {
-        this.props.filter.area = name;
+    handleAreaFilterChange = (area: number) => {
+        this.props.filter.area = area;
+        this.forceUpdate();
     }
 
     handleSearchClick = () => {
@@ -73,7 +75,7 @@ class RoomsRibbon extends React.Component<IProps, void> {
                         <Row 
                             title='Площадь комнаты: ' 
                             content={
-                                <TextInput value={filter.area ? filter.area.toString() : ''} onChange={this.handleAreaFilterChange}/>
+                                <NumberInput value={filter.area} onChange={this.handleAreaFilterChange}/>
                             }
                         />
                         <SimpleButton title='Поиск' onClick={this.handleSearchClick} />

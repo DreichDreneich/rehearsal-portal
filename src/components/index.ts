@@ -4,6 +4,7 @@ import {Label} from './label';
 import {SimpleButton} from './button/simpleButton';
 import {Panel} from './panel/panel';
 import {TextInput} from './inputs/textInput';
+import {NumberInput} from './inputs/numberInput';
 
 export {
     MainMenu,
@@ -11,5 +12,6 @@ export {
     Label,
     SimpleButton,
     Panel,
-    TextInput
+    TextInput,
+    NumberInput
 }

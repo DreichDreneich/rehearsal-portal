@@ -45,7 +45,10 @@ export const getRoomsByFilter = (filter: IRoomsRibbonFilter) => {
             filteredRooms = take(rooms, 50);
         } else {
             filteredRooms = rooms.filter(r => {
-                return includes(r.name, filter.name)
+                let includeName = includes(r.name, filter.name);
+                let haveArea = r.area === filter.area;
+
+                return includeName || haveArea;
             });
         }
 
@@ -53,7 +56,6 @@ export const getRoomsByFilter = (filter: IRoomsRibbonFilter) => {
             let includeName = filter && includes(b.name, filter.baseName);
             let inCity = filter && includes(b.city, filter.city);
             let haveFilteredRooms = filteredRooms && filteredRooms.map(r => r.baseId).find(bId => bId === b.id);
-
             
 
             let result = includeName || inCity || haveFilteredRooms;
