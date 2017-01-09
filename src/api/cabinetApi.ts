@@ -2,7 +2,6 @@ import {IBaseUser, IRoom, IBase, IRoomsRibbonFilter} from 'models';
 import {includes, take, isEmpty} from 'lodash';
 
 export const getBaseUserInfo = (userId: string) => {
-    debugger;
     return new Promise<IBaseUser>((resolve, reject) => {
         let result: IBaseUser = baseUsers.find(bu => bu.id == userId);
         resolve(result);

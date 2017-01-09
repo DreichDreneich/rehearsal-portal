@@ -1,4 +1,5 @@
 import {IRoute} from '../models';
+import {Authentication} from 'modules';
 
 export const routeConfig = () : IRoute[]=> {
     return [

@@ -5,6 +5,7 @@ import {SimpleButton} from './button/simpleButton';
 import {Panel} from './panel/panel';
 import {TextInput} from './inputs/textInput';
 import {NumberInput} from './inputs/numberInput';
+import {PasswordInput} from './inputs/passwordInput';
 
 export {
     MainMenu,
@@ -13,5 +14,6 @@ export {
     SimpleButton,
     Panel,
     TextInput,
-    NumberInput
+    NumberInput,
+    PasswordInput
 }
