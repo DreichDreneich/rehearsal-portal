@@ -17,30 +17,13 @@ export class App extends React.Component<null, IAppState> {
         userId: null
     }
 
-    private handleLogin = (login: string, password: string) => {
-        LogIn(login, password).then(userId =>{
-            let newState = Object.assign({}, this.state, {userId});
-            this.setState(newState);
-        });
-    }
-
-    private renderAuthentication = () => {
-        return (
-            <Authentication key="auth" userId={this.state.userId} onLogin={this.handleLogin}/>
-        )
-    }
-
-    calculateRightSectionConfig = () => {
-        return rightSection().concat(this.renderAuthentication());
-    }
-
     render() {
         return (
                 <div>
                     <MainMenu 
                         title="Rehearsal Portal" 
                         routeConfig={routeConfig()} 
-                        rightSectionConfig={this.calculateRightSectionConfig()} />
+                        rightSectionConfig={rightSection()} />
                     <div className="container">
                         {this.props.children}
                     </div>

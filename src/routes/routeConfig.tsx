@@ -1,5 +1,6 @@
+import * as React from 'react';
 import {IRoute} from '../models';
-import {Authentication} from 'modules';
+import {AuthMenuItem} from 'modules';
 
 export const routeConfig = () : IRoute[]=> {
     return [
@@ -15,14 +16,9 @@ export const routeConfig = () : IRoute[]=> {
 }
 
 export const rightSection = () :(IRoute | JSX.Element) [] => {
-    let cabinetLink : IRoute = {
-        link: "cabinet",
-        name: "Личный кабинет"
-    }
-
     return (
         [
-            cabinetLink
+            <AuthMenuItem key='auth-menu-item'/>
         ]
     )
 }

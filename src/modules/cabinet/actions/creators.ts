@@ -33,7 +33,6 @@ const baseInfoLoad = (baseId: string) => {
             getBaseById(baseId),
             getRoomsByBaseId(baseId)
         ]).then(result => {
-            debugger;
             dispatch(baseLoaded(result[0]));
             dispatch(roomsLoaded(result[1]))
         });
@@ -41,7 +40,6 @@ const baseInfoLoad = (baseId: string) => {
 }
 
 const roomInfoLoad = (roomId: string) => {
-    debugger;
     return (dispatch) => {
         getRoomById(roomId).
         then(result => {

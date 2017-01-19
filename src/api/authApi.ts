@@ -10,7 +10,7 @@ export const LogIn = (login: string, password: string) => {
 
 export const LogOut = (userId: string) => {
     return new Promise<boolean>((resolve, reject) => {
-        return true;
+        resolve(true);
     })
 }
 

@@ -1,6 +1,12 @@
-import {IBase, IBaseUser, IRoom, IRoomsRibbonFilter} from 'models';
+import {
+    IBase, 
+    IBaseUser, 
+    IRoom, 
+    IRoomsRibbonFilter
+} from 'models';
 
 export interface IReduxState {
+    user: IUserState;
     cabinet: ICabinetState;
     roomsRibbon: IRoomsRibbonState;
 }
@@ -20,4 +26,8 @@ export interface IRoomsRibbonState {
     rooms: IRoom[];
     filter: IRoomsRibbonFilter;
     loading: boolean;
+}
+
+export interface IUserState {
+    userId: string;
 }

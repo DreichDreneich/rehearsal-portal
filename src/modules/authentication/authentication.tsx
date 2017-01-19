@@ -1,9 +1,24 @@
 import * as React from 'react';
-import {PasswordInput, TextInput, SimpleButton} from 'components';
+import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
+import {
+    PasswordInput, 
+    TextInput, 
+    SimpleButton
+} from 'components';
+import {
+    IReduxState,
+    ICredentials
+} from 'models';
+import {
+    login
+} from './actions/creators';
 
 interface IProps {
-    onLogin: (login: string, password: string) => void;
-    userId?: string;
+    actions: {
+        login: (credentials: ICredentials) => (dispatch) => void
+    }
+    userId: string;
 }
 
 interface IState {
@@ -11,10 +26,10 @@ interface IState {
     password?: string;
 }
 
-export class Authentication extends React.Component<IProps, IState> {
+class Authentication extends React.Component<IProps, IState> {
     state: IState = {
-        login: null,
-        password: null
+        login: '',
+        password: ''
     }
 
     handlePasswordChange = (password: string) => {
@@ -29,24 +44,23 @@ export class Authentication extends React.Component<IProps, IState> {
 
     renderLogin = () => {
         return (
-            <li className='login'>
+            <div className='login'>
                 <TextInput
-                    className='col-md-4'
                     value={this.state.login} 
                     onChange={this.handleLoginChange} 
                 />
                 <PasswordInput 
-                    className='col-md-4'
                     value={this.state.password} 
                     onChange={this.handlePasswordChange} 
                 />
-                <div  className='col-md-4'>
-                    <SimpleButton 
-                        title='Войти' 
-                        onClick={() => this.props.onLogin(this.state.login, this.state.password)} 
-                    />
-                </div>
-            </li>
+                <SimpleButton 
+                    title='Войти' 
+                    onClick={() => this.props.actions.login({
+                        login: this.state.login, 
+                        password: this.state.password
+                    })} 
+                />
+            </div>
         )
     }
 
@@ -59,10 +73,20 @@ export class Authentication extends React.Component<IProps, IState> {
     }
 
     render() {
-        if(this.props.userId) {
-            return this.renderLogout();
-        } else {
-            return this.renderLogin();
-        }
-    }                    
+        return this.renderLogin();
+    }                     
 }
+
+const mapStateToProps = (state: IReduxState) => {
+    return {
+        userId: state.user.userId
+    }
+}
+
+function mapDispatchToProps(dispatch) {
+    return {
+        actions: bindActionCreators({login}, dispatch)
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Authentication)

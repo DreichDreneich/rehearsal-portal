@@ -53,7 +53,6 @@ export class MainMenu extends React.Component<IMainMenuProps, null> {
         )
     }
 
-
     buildRightSection() {
         if(!this.props.rightSectionConfig)
             return null;
@@ -62,7 +61,7 @@ export class MainMenu extends React.Component<IMainMenuProps, null> {
             if(isRoute(elem)) {
                 return this.buildRoute(elem, idx);
             } else {
-                return elem
+                return elem;
             }
         });
     }

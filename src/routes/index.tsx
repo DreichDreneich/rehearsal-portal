@@ -6,7 +6,8 @@ import {
     Cabinet, 
     Base, 
     Room,
-    RoomsRibbon
+    RoomsRibbon,
+    Authentication
 } from '../modules';
 
 export class RoutesProvider extends React.Component<null, null> {
@@ -19,6 +20,7 @@ export class RoutesProvider extends React.Component<null, null> {
                     <Route path="/cabinet/base/:baseId" component={Base} />
                     <Route path="/cabinet/base/:baseId/room/:roomId" component={Room} />
                     <Route path="/ribbon" component={RoomsRibbon} />
+                    <Route path="/login" component={Authentication} />
                 </Route>
             </Router>
         )
