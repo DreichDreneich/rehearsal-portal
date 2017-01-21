@@ -9,11 +9,13 @@ import {
     LogOut
 } from 'api'
 
-export const login = (credentilas: ICredentials) => {
+export const login = (credentilas: ICredentials, handleLogin: () => void) => {
     return (dispatch) => {
         dispatch(loginStart(credentilas));
         LogIn(credentilas.login, credentilas.password).then(userId => {
             dispatch(loginEnd(userId));
+        }).then(() => {
+            handleLogin();
         })
     }
 }

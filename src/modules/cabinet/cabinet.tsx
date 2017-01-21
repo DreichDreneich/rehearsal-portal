@@ -1,6 +1,7 @@
 import * as React from 'react';
 import {connect} from 'react-redux';
 import {Link} from 'react-router';
+import {Router} from 'react-router';
 
 import {IBaseUser, IBase, IRoom, IReduxState} from 'models';
 import {cloneReactElement} from 'helpers';
@@ -12,11 +13,17 @@ interface IProps {
     baseUser: IBaseUser;
     dispatch: any;
     bases: IBase[];
+    userId: string;
+    router: Router.InjectedRouter
 }
 
-class Cabinet extends React.Component<IProps, null> {
+class Cabinet extends React.Component<IProps, void> {
     componentWillMount = () => {
-        this.props.dispatch(baseUserInfoLoad("1"));
+        if(this.props.userId) {
+            this.props.dispatch(baseUserInfoLoad(this.props.userId));
+        } else {
+            this.props.router.push('/login');
+        }
     }
 
     renderPhones = () => {
@@ -88,6 +95,7 @@ class Cabinet extends React.Component<IProps, null> {
 
 const mapStateToProps = (state: IReduxState) => {
     return {
+        userId: state.user.userId,
         baseUser: state.cabinet.baseUser,
         bases: state.cabinet.bases
     }

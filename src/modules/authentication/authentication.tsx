@@ -1,5 +1,6 @@
 import * as React from 'react';
 import {connect} from 'react-redux';
+import {Router} from 'react-router';
 import {bindActionCreators} from 'redux';
 import {
     PasswordInput, 
@@ -16,9 +17,10 @@ import {
 
 interface IProps {
     actions: {
-        login: (credentials: ICredentials) => (dispatch) => void
+        login: (credentials: ICredentials, handleLogin: () => void) => (dispatch) => void
     }
     userId: string;
+    router: Router.InjectedRouter
 }
 
 interface IState {
@@ -42,6 +44,10 @@ class Authentication extends React.Component<IProps, IState> {
         this.setState(newState);
     }
 
+    handleLogin = () => {
+        this.props.router.push('/cabinet');
+    }
+
     renderLogin = () => {
         return (
             <div className='login'>
@@ -58,7 +64,7 @@ class Authentication extends React.Component<IProps, IState> {
                     onClick={() => this.props.actions.login({
                         login: this.state.login, 
                         password: this.state.password
-                    })} 
+                    }, this.handleLogin)} 
                 />
             </div>
         )
