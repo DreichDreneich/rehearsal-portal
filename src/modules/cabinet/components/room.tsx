@@ -26,7 +26,6 @@ interface IState {
 
 class Room extends React.Component<IProps, IState> {
     componentWillMount() {
-        debugger;
         this.props.actions.roomInfoLoad(this.props.params.roomId);
     }
 

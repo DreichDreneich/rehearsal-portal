@@ -28,7 +28,6 @@ interface IState {
 
 class Base extends React.Component<IProps, IState> {
     componentWillMount() {
-        debugger;
         this.props.dispatch(baseInfoLoad(this.props.params.baseId));
     }
 
@@ -61,7 +60,6 @@ class Base extends React.Component<IProps, IState> {
     }
 
     render() {
-        debugger;
         return (
             <div>
                 <div className="col-md-5">

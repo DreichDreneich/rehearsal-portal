@@ -6,6 +6,7 @@ import {Panel} from './panel/panel';
 import {TextInput} from './inputs/textInput';
 import {NumberInput} from './inputs/numberInput';
 import {PasswordInput} from './inputs/passwordInput';
+import {GanttChart} from './ganttChart/ganttChart';
 
 export {
     MainMenu,
@@ -15,5 +16,6 @@ export {
     Panel,
     TextInput,
     NumberInput,
-    PasswordInput
+    PasswordInput,
+    GanttChart
 }

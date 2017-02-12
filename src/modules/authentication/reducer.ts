@@ -9,7 +9,6 @@ const initialState: any = {
 }
 
 const user = (state: IUserState = initialState, action: IReduxAction)=> {
-    debugger;
     switch(action.type) {
         case types.LOGIN_START:
             return state;

@@ -14,7 +14,6 @@ import {
 
 
 const roomsByFilterLoad = (filter: IRoomsRibbonFilter) => {
-    debugger;
     return (dispatch) => {
         dispatch(roomsByFilterLoadAction());
         getRoomsByFilter(filter).

@@ -3,10 +3,22 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import {Link} from 'react-router';
 
-import {IRoomsRibbonFilter, IReduxState, IRoom, IBase} from 'models';
-import {Row, Label, SimpleButton, Panel, TextInput, NumberInput} from 'components';
+import {
+    IRoomsRibbonFilter, 
+    IReduxState, 
+    IRoom, 
+    IBase
+} from 'models';
+import {
+    Row, 
+    Label, 
+    SimpleButton, 
+    Panel, 
+    TextInput, 
+    NumberInput,
+    GanttChart 
+} from 'components';
 import {roomsByFilterLoad} from './actions/creators';
-
 
 interface IProps {
     actions: {
@@ -88,6 +100,7 @@ class RoomsRibbon extends React.Component<IProps, void> {
                     }) 
                 }
                 </div>
+                <GanttChart />
             </div>
         )
     }

@@ -7,6 +7,5 @@ export interface IBase {
     email?: string;
     phones?: string[];
     pic?: string;
-
     city?: string;
 }

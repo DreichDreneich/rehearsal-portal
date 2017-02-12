@@ -5,6 +5,7 @@ import {IBase} from './common/IBase';
 import {IReduxAction} from './common/IReduxAction';
 import {UIContextType} from './common/UIContextType';
 import {ICredentials} from './authentication/ICredentials';
+import {IDateSpan} from './common/DateSpan';
 import {
     IReduxState, 
     ICabinetState,
@@ -25,5 +26,6 @@ export {
     IRoomsRibbonFilter,
     IRoomsRibbonState,
     ICredentials,
-    IUserState
+    IUserState,
+    IDateSpan
 }
