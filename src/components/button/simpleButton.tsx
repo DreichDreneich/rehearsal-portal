@@ -1,4 +1,5 @@
 import * as React from 'react';
+import {Button} from 'react-toolbox/lib/button';
 import {Link} from 'react-router';
 
 interface IProps {
@@ -11,13 +12,10 @@ interface IProps {
 export class SimpleButton extends React.Component<IProps, null> {
     render() {
         const button = (
-            <button 
-                type="button" 
-                className="btn btn-default"
+            <Button 
                 onClick={this.props.onClick}>
                 {this.props.title}
-                <span className="badge">{this.props.badge}</span>
-            </button>
+            </Button>
         );
 
         return this.props.link ?

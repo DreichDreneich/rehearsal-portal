@@ -3,9 +3,9 @@ import {connect} from 'react-redux';
 import {Router} from 'react-router';
 import {bindActionCreators} from 'redux';
 import {
-    PasswordInput, 
     TextInput, 
-    SimpleButton
+    SimpleButton,
+    RCard
 } from 'components';
 import {
     IReduxState,
@@ -45,27 +45,36 @@ class Authentication extends React.Component<IProps, IState> {
     }
 
     handleLogin = () => {
+        debugger;
         this.props.router.push('/cabinet');
     }
 
     renderLogin = () => {
         return (
-            <div className='login'>
-                <TextInput
-                    value={this.state.login} 
-                    onChange={this.handleLoginChange} 
-                />
-                <PasswordInput 
-                    value={this.state.password} 
-                    onChange={this.handlePasswordChange} 
-                />
-                <SimpleButton 
-                    title='Войти' 
-                    onClick={() => this.props.actions.login({
-                        login: this.state.login, 
-                        password: this.state.password
-                    }, this.handleLogin)} 
-                />
+            <div className='col-xs-4 col-xs-offset-4'>
+                <RCard 
+                    title="Вход в личный кабинет"
+                >
+                    <TextInput
+                        placeholder="Логин"
+                        value={this.state.login} 
+                        onChange={this.handleLoginChange} 
+                    />
+                    <TextInput 
+                        placeholder="Пароль"
+                        type='password'
+                        value={this.state.password} 
+                        onChange={this.handlePasswordChange} 
+                    />
+                    <SimpleButton 
+                        title='Войти' 
+                        onClick={() => this.props.actions.login({
+                            login: this.state.login, 
+                            password: this.state.password
+                        }, this.handleLogin)} 
+                    />
+                </RCard>
+                
             </div>
         )
     }

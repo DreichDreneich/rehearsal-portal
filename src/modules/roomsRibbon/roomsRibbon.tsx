@@ -1,7 +1,6 @@
 import * as React from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-import {Link} from 'react-router';
 
 import {
     IRoomsRibbonFilter, 
@@ -16,7 +15,8 @@ import {
     Panel, 
     TextInput, 
     NumberInput,
-    GanttChart 
+    GanttChart,
+    RCard 
 } from 'components';
 import {roomsByFilterLoad} from './actions/creators';
 
@@ -70,22 +70,15 @@ class RoomsRibbon extends React.Component<IProps, void> {
 
     renderFilter = (filter: IRoomsRibbonFilter) => {
         return (
-            <Panel>
-                <div>Фильтр</div>
-                <Row 
-                    title='Название базы: ' 
-                    content={
-                        <TextInput value={filter.baseName} onChange={this.handleBaseNameFilterChange}/>
-                    } 
-                />
-                <Row 
-                    title='Площадь комнаты: ' 
-                    content={
-                        <NumberInput value={filter.area} onChange={this.handleAreaFilterChange}/>
-                    }
-                />
+            <RCard title="Фильтр">
+                <div className="col-xs-6">
+                    <TextInput placeholder="Название базы" value={filter.baseName} onChange={this.handleBaseNameFilterChange}/>
+                </div>
+                <div className="col-xs-6">
+                    <TextInput placeholder="Площадь комнаты" type="number" value={filter.area} onChange={this.handleAreaFilterChange}/>
+                </div>
                 <SimpleButton title='Поиск' onClick={this.handleSearchClick} />
-            </Panel>
+            </RCard>
         )
     }
 
@@ -96,7 +89,7 @@ class RoomsRibbon extends React.Component<IProps, void> {
                 <div className='col-xs-12'>
                     <h2>Поиск комнаты</h2>
                 </div>
-                <div className='col-xs-12 col-md-9'>
+                <div className='col-xs-12 col-md-9 rcard'>
                     {this.renderFilter(filter)}
                 </div>
                 <div className='col-xs-12 col-md-9'>
