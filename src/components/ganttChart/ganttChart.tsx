@@ -3,6 +3,7 @@ import {IDateSpan} from 'models';
 import {IGanttChartModel} from './models';
 import {GanttTimes} from './ganttTimes';
 import * as classNames from 'classnames';
+import { Button } from 'react-toolbox/lib/button';
 
 //Сделать отдельную утилиту
 import * as moment from 'moment';
@@ -73,6 +74,7 @@ export class GanttChart extends React.Component<void, IState> {
     render() {
         return (
             <div className="overflow-auto col-xs-12">
+            <Button />
                 <TableChart dateSpan={{from: new Date(2016, 1, 1), to: new Date(2016, 1, 1)}}/>
             </div>
         )

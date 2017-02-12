@@ -27,7 +27,11 @@ module.exports = {
 
     resolve: {
         root: path.resolve('./src'),
-        extensions: ["", ".webpack.js", ".web.js", ".ts", ".tsx", ".js", "less"]
+        extensions: ["", ".scss", ".webpack.js", ".web.js", ".ts", ".tsx", ".js", "less"],
+        modulesDirectories: [
+            'node_modules',
+            path.resolve(__dirname, './node_modules')
+        ]
     },
 
     module: {
@@ -41,6 +45,12 @@ module.exports = {
                 loader: ExtractTextPlugin.extract(
                     "style-loader", "css-loader!less-loader?sourceMap"
                 )
+            },
+            {
+                //Это полная жесть, убрал отсюда postcss-loader и все заработало
+                //Итого для react toolbox нужно node-sass и sass-loader
+                test: /(\.scss|\.css)$/,
+                loader: ExtractTextPlugin.extract('style', 'css?sourceMap&modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]!sass')
             }
         ],
 
