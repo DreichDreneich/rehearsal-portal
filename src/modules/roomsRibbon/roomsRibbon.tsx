@@ -40,10 +40,10 @@ class RoomsRibbon extends React.Component<IProps, void> {
         const base = this.props.bases.find(base => base.id === room.baseId);
         return (
             <Panel key={idx}>
-                <div className='col-md-6'>
+                <div className='col-xs-6'>
                     {room.coverPic ? <img className="img" src={room.coverPic}/> : null}
                 </div>
-                <div className='col-md-6'>
+                <div className='col-xs-6'>
                     <Row title='База: ' content={base.name} />
                     <Row title='Город: ' content={base.city} />
                     <Row title='Название: ' content={room.name} />
@@ -68,32 +68,38 @@ class RoomsRibbon extends React.Component<IProps, void> {
         this.props.actions.roomsByFilterLoad(this.props.filter);
     }
 
+    renderFilter = (filter: IRoomsRibbonFilter) => {
+        return (
+            <Panel>
+                <div>Фильтр</div>
+                <Row 
+                    title='Название базы: ' 
+                    content={
+                        <TextInput value={filter.baseName} onChange={this.handleBaseNameFilterChange}/>
+                    } 
+                />
+                <Row 
+                    title='Площадь комнаты: ' 
+                    content={
+                        <NumberInput value={filter.area} onChange={this.handleAreaFilterChange}/>
+                    }
+                />
+                <SimpleButton title='Поиск' onClick={this.handleSearchClick} />
+            </Panel>
+        )
+    }
+
     render() {
         const {rooms, filter} = this.props;
         return (
-            <div className='col-md-12'>
-                <div className='col-md-12'>
+            <div className='col-xs-12'>
+                <div className='col-xs-12'>
                     <h2>Поиск комнаты</h2>
                 </div>
-                <div className='col-md-8'>
-                    <Panel>
-                        <div>Фильтр</div>
-                        <Row 
-                            title='Название базы: ' 
-                            content={
-                                <TextInput value={filter.baseName} onChange={this.handleBaseNameFilterChange}/>
-                            } 
-                        />
-                        <Row 
-                            title='Площадь комнаты: ' 
-                            content={
-                                <NumberInput value={filter.area} onChange={this.handleAreaFilterChange}/>
-                            }
-                        />
-                        <SimpleButton title='Поиск' onClick={this.handleSearchClick} />
-                    </Panel>
+                <div className='col-xs-12 col-md-9'>
+                    {this.renderFilter(filter)}
                 </div>
-                <div className='col-md-8'>
+                <div className='col-xs-12 col-md-9'>
                 { 
                     rooms.map((room, idx) => {
                         return this.renderRoomPanel(room, idx)

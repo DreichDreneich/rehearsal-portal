@@ -7,6 +7,8 @@ import {TextInput} from './inputs/textInput';
 import {NumberInput} from './inputs/numberInput';
 import {PasswordInput} from './inputs/passwordInput';
 import {GanttChart} from './ganttChart/ganttChart';
+import {RCard} from './card';
+import {RList} from './list';
 
 export {
     MainMenu,
@@ -17,5 +19,7 @@ export {
     TextInput,
     NumberInput,
     PasswordInput,
-    GanttChart
+    GanttChart,
+    RCard,
+    RList
 }

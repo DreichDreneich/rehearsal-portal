@@ -71,7 +71,7 @@ export class MainMenu extends React.Component<IMainMenuProps, null> {
             <nav className="navbar navbar-default">
                 <div className="container">
                     <div className="navbar-header">
-                        <Link className="navbar-brand" to={'/'}>Rehearsal Portal</Link>
+                        <Link className="navbar-brand" to={'/'}>Репетиционный портал для музыкантов</Link>
                     </div>
                     <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                         {this.buildLeftSide()}

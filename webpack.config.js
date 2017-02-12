@@ -48,7 +48,7 @@ module.exports = {
             },
             {
                 //Это полная жесть, убрал отсюда postcss-loader и все заработало
-                //Итого для react toolbox нужно node-sass и sass-loader
+                //Итого для react toolbox нужно node-sass и sass-loader react-addons-css-transition-group
                 test: /(\.scss|\.css)$/,
                 loader: ExtractTextPlugin.extract('style', 'css?sourceMap&modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]!sass')
             }

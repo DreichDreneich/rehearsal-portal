@@ -1,9 +1,11 @@
 import * as React from 'react';
+import * as classNames from 'classnames';
+import DatePicker from 'react-toolbox/lib/date_picker';
+
 import {IDateSpan} from 'models';
 import {IGanttChartModel} from './models';
 import {GanttTimes} from './ganttTimes';
-import * as classNames from 'classnames';
-import { Button } from 'react-toolbox/lib/button';
+
 
 //Сделать отдельную утилиту
 import * as moment from 'moment';
@@ -11,10 +13,6 @@ import * as moment from 'moment';
 interface IProps {
     model: IGanttChartModel;
     timeSpan: IDateSpan;
-}
-
-interface IState {
-
 }
 
 let hours = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23];
@@ -26,28 +24,28 @@ let groupsData : IGroup[] = [
     name: "Комната 1",
     tasks: [
         {
-            dates: {from: new Date(2015, 11, 31, 3), to: new Date(2016, 1, 1, 6)},
+            dates: {from: new Date(2017, 11, 31, 3), to: new Date(2017, 1, 1, 6)},
             subject: {                
                 id: "erfref",
                 label: "METALLICA"
             }
         },
         {
-            dates: {from: new Date(2016, 1, 1, 14), to: new Date(2016, 1, 1, 17)},
+            dates: {from: new Date(2017, 1, 1, 14), to: new Date(2017, 1, 1, 17)},
             subject: {                
                 id: "erfref",
                 label: "METALLICA"
             }
         },
         {
-            dates: {from: new Date(2016, 1, 1, 11), to: new Date(2016, 1, 1, 13)},
+            dates: {from: new Date(2017, 1, 1, 11), to: new Date(2017, 1, 1, 13)},
             subject: {                
                 id: "erfref",
                 label: "Стас Михайлов"
             }
         },
         {
-            dates: {from: new Date(2016, 1, 1, 22), to: new Date(2016, 1, 2, 5)},
+            dates: {from: new Date(2017, 1, 1, 22), to: new Date(2017, 1, 2, 5)},
             subject: {                
                 id: "erfref",
                 label: "Лесоповал"
@@ -59,7 +57,7 @@ let groupsData : IGroup[] = [
     id: "fsdf",
     name: "Комната 2",
     tasks: [{
-        dates: {from: new Date(2016, 1, 1, 9), to: new Date(2016, 1, 1, 14)},
+        dates: {from: new Date(2017, 1, 1, 9), to: new Date(2017, 1, 1, 14)},
         subject: {                
             id: "57878",
             label: "DEEP PURPLE"
@@ -69,13 +67,32 @@ let groupsData : IGroup[] = [
 
 ]
 
-export class GanttChart extends React.Component<void, IState> {
-    
+interface IGanttChartProps {
+    date?: Date;
+}
+
+interface IGanttChartState {
+    date?: Date;
+}
+
+export class GanttChart extends React.Component<IGanttChartProps, IGanttChartState> {
+    state: IGanttChartState = {
+
+    }
+
+    handleDateChange = (item, value) => {
+        this.setState({date: new Date(item)})
+    }
+
     render() {
+        const {date} = this.state;
+
         return (
             <div className="overflow-auto col-xs-12">
-            <Button />
-                <TableChart dateSpan={{from: new Date(2016, 1, 1), to: new Date(2016, 1, 1)}}/>
+                <div className="col-xs-3">
+                    <DatePicker label="Выберите дату" value={date} onChange={this.handleDateChange}/>
+                </div>
+                <TableChart dateSpan={{from: date, to: date}}/>
             </div>
         )
     }
@@ -253,9 +270,13 @@ export const DateUtils = {
         const endDate = moment(to);
         var dates: moment.Moment[] = [startDate];
 
+        if(startDate.isSame(endDate, 'day')) {
+            return dates;
+        }
+
         let currDate = startDate.clone().startOf('day');
         let lastDate = endDate.clone().startOf('day');
-
+        debugger;
         while(currDate.add('days', 1).diff(lastDate) < 0) {
             dates.push(currDate.clone());
         }
