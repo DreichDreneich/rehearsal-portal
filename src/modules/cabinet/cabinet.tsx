@@ -6,7 +6,7 @@ import {Router} from 'react-router';
 import {IBaseUser, IBase, IRoom, IReduxState} from 'models';
 import {cloneReactElement} from 'helpers';
 import {baseUserInfoLoad} from './actions/creators';
-import {Row, Label, SimpleButton, Panel} from 'components';
+import {Row, Label, SimpleButton, Panel, RCard} from 'components';
 import {CabinetBaseRibbon} from './components/cabinetBaseRibbon';
 
 interface IProps {
@@ -46,18 +46,12 @@ class Cabinet extends React.Component<IProps, void> {
     renderBaseUserInfo = () => {
         return (
             <div className="col-md-5">
-                <Panel>
-                    {
-                        this.props.baseUser.pic ? 
-                            <img className="media-object img" src={this.props.baseUser.pic} /> : 
-                            null 
-                    }
-                    <Row 
-                        title="Название"
-                        content={this.props.baseUser.name}
-                    />
+                <RCard
+                    title={this.props.baseUser.name}
+                    image={this.props.baseUser && this.props.baseUser.pic} 
+                >
                     {this.renderPhones()}
-                </Panel>
+                </RCard>
             </div>
         )
     }
@@ -74,21 +68,13 @@ class Cabinet extends React.Component<IProps, void> {
         )
     }
 
-    renderBaseUser = () => {
+    render() {
         return (
             <div>
+                <h2> Личный кабинет </h2>
                 {this.props.baseUser ? this.renderBaseUserInfo() : <h1>Loading...</h1>}
                 {this.props.bases ? this.renderBases() : <h1>Loading...</h1>}
             </div>
-        )
-    }
-
-    render() {
-        return (
-            <Panel>
-                <h2> Личный кабинет </h2>
-                {this.renderBaseUser()}
-            </Panel>
         )
     }
 }

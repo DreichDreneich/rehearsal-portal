@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {IRoom, UIContextType} from 'models';
-import {Row, Panel, SimpleButton} from 'components';
+import {Row, Panel, SimpleButton, RCard} from 'components';
 
 interface IProps {
     baseId: string;
@@ -12,29 +12,19 @@ interface IState {
 }
 
 export class CabinetRoomsRibbon extends React.Component<IProps, IState> {
-    renderImg(url){
-        if(url) {
-            return(
-                <div className="col-md-4">
-                    <img className="media-object img" src={url}/>
-                </div>
-            );
-        } else {
-            return null;
-        }
-    }
-
     renderRoom(room: IRoom, key: any) {
         return (
-            <Panel key={key} type={UIContextType.INFO}>
-                {this.renderImg(room.coverPic)}
-                <div className="col-md-8">
-                    <Row title="Название" content={room.name}/>
-                </div>
-                <div className="col-md-12">
+            <div className="rcard col-xs-12 col-md-4">
+                <RCard
+                    key={key}
+                    title={room.name}
+                    image={room.coverPic} 
+                    actions={[
                     <SimpleButton title="Подробнее" link={'/cabinet/base/' + this.props.baseId + '/room/' + room.id} />
-                </div>
-            </Panel>
+                    ]}
+                >
+                </RCard>
+            </div>
         )
     }
 

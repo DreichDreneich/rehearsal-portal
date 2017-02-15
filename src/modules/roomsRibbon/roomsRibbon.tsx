@@ -99,7 +99,6 @@ class RoomsRibbon extends React.Component<IProps, void> {
                     }) 
                 }
                 </div>
-                <GanttChart />
             </div>
         )
     }

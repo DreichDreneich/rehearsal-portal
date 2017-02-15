@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import {bindActionCreators, Dispatch, Action} from 'redux';
 
 import {IBase, IRoom, IReduxState} from 'models';
-import {Row, Panel} from 'components';
+import {Row, RCard, GanttChart} from 'components';
 
 import {baseInfoLoad} from '../actions/creators';
 import {CabinetRoomsRibbon} from './cabinetRoomsRibbon';
@@ -37,11 +37,16 @@ class Base extends React.Component<IProps, IState> {
 
         if(base) {
             result = (
-                <Panel>
-                    {base.pic ? <img className="img" src={base.pic}/> : null}
-                    <Row title="Название" content={base.name}/>
-                    <Row title="Email" content={base.email}/>
-                </Panel>
+                <div className="rcard col-xs-12">
+                    <RCard
+                        title={base.name}
+                        image={base.pic} 
+                        actions={[
+                        ]}
+                    >
+                        <Row title="Email" content={base.email}/>
+                    </RCard>
+                </div>
             ) 
         } else {
             result = <h2>Loading...</h2>
@@ -68,6 +73,9 @@ class Base extends React.Component<IProps, IState> {
                 <div className="col-md-7">
                     {this.renderRoomRibbon()}
                 </div>
+                <div>
+                    <GanttChart />
+                </div>
             </div>
         )
     }
@@ -79,11 +87,5 @@ const mapStateToProps = (state: IReduxState) => {
         rooms: state.cabinet.currentBase.rooms
     }
 }
-
-// function mapDispatchToProps(dispatch) {
-//     return {
-//         actions: bindActionCreators({baseInfoLoad}, dispatch)
-//     }
-// }
 
 export default connect(mapStateToProps)(Base)
