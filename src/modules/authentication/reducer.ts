@@ -15,7 +15,7 @@ const user = (state: IUserState = initialState, action: IReduxAction)=> {
         case types.LOGIN_START:
             return state;
         case types.LOGIN_END:
-            return Object.assign({}, state, {userId: action.payload});
+            return Object.assign({}, state, {user: action.payload});
         case types.LOGOUT_START:
             return state;
         case types.LOGOUT_END:

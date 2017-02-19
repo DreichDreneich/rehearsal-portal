@@ -7,6 +7,9 @@ import {
     IReduxAction
 } from 'models';
 import * as types from './types';
+
+import {getBaseUserById, getBaseUserByUserId as getBaseUserByUserIdService} from '../service';
+
 import {
     getBaseUserInfo, 
     getBasesByBaseUserId,
@@ -15,15 +18,14 @@ import {
     getRoomsByBaseId
 } from 'api';
 
+import {
+    dispatchAsync
+} from 'helpers/reducerHelper';
+
 const baseUserInfoLoad = (userId: string) => {
     return (dispatch) => {
-        Promise.all([
-            getBaseUserInfo(userId),
-            getBasesByBaseUserId(userId)
-        ]).then(result => {
-            dispatch(baseUserInfoLoaded(result[0]));
-            dispatch(basesLoaded(result[1]))
-        });
+        dispatch()
+        getBaseUserById(userId)
     }
 }
 
@@ -37,6 +39,10 @@ const baseInfoLoad = (baseId: string) => {
             dispatch(roomsLoaded(result[1]))
         });
     }
+}
+
+export const getBaseUserByUserId = (userId: string) => {
+    return dispatchAsync(types.GET_BASE_USER, () => getBaseUserByUserIdService(userId))
 }
 
 const roomInfoLoad = (roomId: string) => {

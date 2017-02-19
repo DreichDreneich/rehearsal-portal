@@ -1,11 +1,12 @@
 import * as React from 'react';
+import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import {Link} from 'react-router';
 import {Router} from 'react-router';
 
-import {IBaseUser, IBase, IRoom, IReduxState} from 'models';
+import {IBaseUser, IBase, IRoom, IReduxState, IUser} from 'models';
 import {cloneReactElement} from 'helpers';
-import {baseUserInfoLoad} from './actions/creators';
+import {baseUserInfoLoad, getBaseUserByUserId} from './actions/creators';
 import {Row, Label, SimpleButton, Panel, RCard, PageHeader} from 'components';
 import {CabinetBaseRibbon} from './components/cabinetBaseRibbon';
 
@@ -13,19 +14,18 @@ interface IProps {
     baseUser: IBaseUser;
     dispatch: any;
     bases: IBase[];
-    userId: string;
-    router: Router.InjectedRouter
+    user: IUser;
+    router: Router.InjectedRouter;
+    actions: {
+        getBaseUserByUserId: (userId: string) => any;
+    }
 }
 
 
 //Компонент для BaseUser
 class Cabinet extends React.Component<IProps, void> {
     componentWillMount = () => {
-        if(this.props.userId) {
-            this.props.dispatch(baseUserInfoLoad(this.props.userId));
-        } else {
-            this.props.router.push('/login');
-        }
+        this.props.actions.getBaseUserByUserId(this.props.user.id);
     }
 
     renderPhones = () => {
@@ -92,11 +92,18 @@ class Cabinet extends React.Component<IProps, void> {
 }
 
 const mapStateToProps = (state: IReduxState) => {
+    debugger;
     return {
-        userId: state.user.userId,
+        user: state.user.user,
         baseUser: state.cabinet.baseUser,
         bases: state.cabinet.bases
     }
 }
 
-export default connect(mapStateToProps)(Cabinet)
+function mapDispatchToProps(dispatch) {
+    return {
+        actions: bindActionCreators({getBaseUserByUserId}, dispatch)
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Cabinet)

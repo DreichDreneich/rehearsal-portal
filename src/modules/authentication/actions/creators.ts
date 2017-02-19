@@ -7,29 +7,31 @@ import {
     IUser
 } from 'models';
 import {
-    Register
+    Register,
+    Login,
+    Logout
 } from '../service';
 import {
     LogIn,
     LogOut
 } from 'api'
 
-export const login = (credentilas: ICredentials, handleLogin: () => void) => {
+export const login = (credentials: ICredentials, handleLogin: () => void) => {
     return (dispatch) => {
-        dispatch(loginStart(credentilas));
-        LogIn(credentilas.login, credentilas.password).then(userId => {
-            dispatch(loginEnd(userId));
+        dispatch(loginStart(credentials));
+        Login({loginObject: credentials.login, password: credentials.password}).then(user => {
+            dispatch(loginEnd(user));
         }).then(() => {
             handleLogin();
         })
     }
 }
 
-export const logout = (userId: string) => {
+export const logout = () => {
     return (dispatch) => {
-        dispatch(logoutStart(userId));
-        LogOut(userId).then(result => {
-            dispatch(logoutEnd(result));
+        dispatch(logoutStart());
+        Logout().then(() => {
+            dispatch(logoutEnd());
         })
     }
 }
@@ -64,23 +66,23 @@ const loginStart = (credentilas: ICredentials) : IReduxAction => {
     }
 }
 
-const loginEnd = (userId: string) : IReduxAction => {
+const loginEnd = (user: IUser) : IReduxAction => {
     return {
         type: types.LOGIN_END,
-        payload: userId
+        payload: user
     }
 }
 
-const logoutStart = (userId: string) : IReduxAction => {
+const logoutStart = () : IReduxAction => {
     return {
         type: types.LOGOUT_START,
-        payload: userId
+        payload: null
     }
 }
 
-const logoutEnd = (result: boolean) : IReduxAction => {
+const logoutEnd = () : IReduxAction => {
     return {
         type: types.LOGOUT_END,
-        payload: result
+        payload: null
     }
 }

@@ -18,10 +18,10 @@ interface IUser {
     id: string;
     email: string;
     login: string;
-    registrationDate: string;
-    lastLoginDate: string;
+    bandsParticipant: string[]
+    bandUsers: string[],
+    baseUsers: IBaseUser[]
 }
-
 
 export {
     IRoute,

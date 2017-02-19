@@ -36,7 +36,7 @@ export const GET = (url: string, parameters?: Object, config?: Object) : Promise
     return new Promise((resolve, reject) => {
         axiosInstance.get(buildUrl(url, parameters), config).
             then(response => {
-                resolve(response);
+                resolve(response.data);
             }).
             catch(errors => {
                 reject(errors);
@@ -44,11 +44,11 @@ export const GET = (url: string, parameters?: Object, config?: Object) : Promise
     });
 }
 
-export const POST = (url: string, data?: Object, parameters?: Object, config?: Object) => {
+export const POST = (url: string, data?: Object, parameters?: Object, config?: Object): Promise<any> => {
     return new Promise((resolve, reject) => {
         axiosInstance.post(buildUrl(url, parameters), data).
             then(response => {
-                resolve(response);
+                resolve(response.data);
             }).
             catch(errors => {
                 reject(errors);

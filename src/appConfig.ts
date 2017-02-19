@@ -1,5 +1,5 @@
 export let appConfig = {
     apiRoot: 'api/',
-    timeout: 20*1000,
+    timeout: 2*60*1000,//2 мин
     serverRoot: 'http://localhost:3001/'
 }

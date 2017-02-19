@@ -55,7 +55,7 @@ class Authentication extends React.Component<IProps, IState> {
                     title="Вход в личный кабинет"
                 >
                     <TextInput
-                        placeholder="Логин"
+                        placeholder="Логин или e-mail"
                         value={this.state.login} 
                         onChange={this.handleLoginChange} 
                     />
@@ -77,15 +77,7 @@ class Authentication extends React.Component<IProps, IState> {
             </div>
         )
     }
-
-    renderLogout = () => {
-        return (
-            <li>
-                Logout
-            </li>
-        )
-    }
-
+    
     render() {
         return this.renderLogin();
     }                     

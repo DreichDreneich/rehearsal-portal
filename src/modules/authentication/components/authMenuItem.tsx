@@ -17,7 +17,7 @@ import {
 
 interface IProps {
     actions: {
-        logout: (userId: string) => (dispatch) => void
+        logout: () => (dispatch) => void
     }
     userId: string;
 }
@@ -34,7 +34,7 @@ class AuthMenuItem extends React.Component<IProps, void> {
     }
 
     handleLogoutClick = () => {
-        this.props.actions.logout(this.props.userId);
+        this.props.actions.logout();
     }
 
     renderLogout = () => {
