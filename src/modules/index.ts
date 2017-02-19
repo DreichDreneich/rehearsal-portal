@@ -3,6 +3,7 @@ import Base from './cabinet/components/base';
 import Room from './cabinet/components/room';
 import RoomsRibbon from './roomsRibbon/roomsRibbon';
 import Authentication from './authentication/authentication';
+import Registration from './authentication/register';
 import AuthMenuItem from './authentication/components/authMenuItem';
 
 export {
@@ -11,5 +12,6 @@ export {
     Room,
     RoomsRibbon,
     Authentication,
-    AuthMenuItem
+    AuthMenuItem,
+    Registration
 }

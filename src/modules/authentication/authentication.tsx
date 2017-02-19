@@ -45,7 +45,6 @@ class Authentication extends React.Component<IProps, IState> {
     }
 
     handleLogin = () => {
-        debugger;
         this.props.router.push('/cabinet');
     }
 

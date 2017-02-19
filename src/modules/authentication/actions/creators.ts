@@ -2,8 +2,13 @@ import * as Redux from 'redux';
 import * as types from './types';
 import {
     IReduxAction,
-    ICredentials
+    ICredentials,
+    IRegisterViewModel,
+    IUser
 } from 'models';
+import {
+    Register
+} from '../service';
 import {
     LogIn,
     LogOut
@@ -29,6 +34,28 @@ export const logout = (userId: string) => {
     }
 }
 
+export const register = (model: IRegisterViewModel) => {
+    return (dispatch) => {
+        dispatch(registerStart(model));
+        Register(model).then(response => {
+            dispatch(registerEnd(response));
+        })
+    }
+}
+
+const registerStart = (model: IRegisterViewModel) : IReduxAction => {
+    return {
+        type: types.REGISTER_START,
+        payload: model
+    }
+}
+
+const registerEnd = (user: IUser) : IReduxAction => {
+    return {
+        type: types.REGISTER_END,
+        payload: null
+    }
+}
 
 const loginStart = (credentilas: ICredentials) : IReduxAction => {
     return {

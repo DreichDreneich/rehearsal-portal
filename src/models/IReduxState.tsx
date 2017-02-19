@@ -2,7 +2,8 @@ import {
     IBase, 
     IBaseUser, 
     IRoom, 
-    IRoomsRibbonFilter
+    IRoomsRibbonFilter,
+    IUser
 } from 'models';
 
 export interface IReduxState {
@@ -29,5 +30,6 @@ export interface IRoomsRibbonState {
 }
 
 export interface IUserState {
+    user: IUser;
     userId: string;
 }

@@ -4,7 +4,7 @@ import {IBaseUser} from './common/IBaseUser';
 import {IBase} from './common/IBase';
 import {IReduxAction} from './common/IReduxAction';
 import {UIContextType} from './common/UIContextType';
-import {ICredentials} from './authentication/ICredentials';
+import {ICredentials, IRegisterViewModel} from './authentication/ICredentials';
 import {IDateSpan} from './common/DateSpan';
 import {
     IReduxState, 
@@ -13,6 +13,15 @@ import {
     IUserState
 } from './IReduxState';
 import {IRoomsRibbonFilter} from './basesRibbon/IBasesRibbonFilter';
+
+interface IUser {
+    id: string;
+    email: string;
+    login: string;
+    registrationDate: string;
+    lastLoginDate: string;
+}
+
 
 export {
     IRoute,
@@ -27,5 +36,7 @@ export {
     IRoomsRibbonState,
     ICredentials,
     IUserState,
-    IDateSpan
+    IDateSpan,
+    IRegisterViewModel,
+    IUser
 }

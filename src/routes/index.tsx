@@ -7,7 +7,8 @@ import {
     Base, 
     Room,
     RoomsRibbon,
-    Authentication
+    Authentication,
+    Registration
 } from '../modules';
 
 export class RoutesProvider extends React.Component<null, null> {
@@ -21,6 +22,7 @@ export class RoutesProvider extends React.Component<null, null> {
                     <Route path="/cabinet/base/:baseId/room/:roomId" component={Room} />
                     <Route path="/ribbon" component={RoomsRibbon} />
                     <Route path="/login" component={Authentication} />
+                    <Route path="/registration" component={Registration} />
                 </Route>
             </Router>
         )

@@ -1,7 +1,14 @@
 import {
-    cloneReactElement
+    cloneReactElement,
 } from './common';
 
+import {
+    GET,
+    POST
+} from './httpRequest';
+
 export {
-    cloneReactElement
+    cloneReactElement,
+    GET,
+    POST
 }

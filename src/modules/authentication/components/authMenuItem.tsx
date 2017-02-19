@@ -22,21 +22,14 @@ interface IProps {
     userId: string;
 }
 
-interface IState {
-    login?: string;
-    password?: string;
-}
 
-class AuthMenuItem extends React.Component<IProps, IState> {
-    state: IState = {
-        login: null,
-        password: null
-    }
-
-
+class AuthMenuItem extends React.Component<IProps, void> {
     renderLogin = () => {
         return (
-            <Link className="navbar-brand" to={'/login'}>Login</Link>
+            <div>
+                <Link className="navbar-brand" to={'/registration'}>Registration</Link>
+                <Link className="navbar-brand" to={'/login'}>Login</Link>            
+            </div>
         )
     }
 

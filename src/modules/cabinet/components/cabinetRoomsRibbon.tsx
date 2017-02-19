@@ -20,7 +20,7 @@ export class CabinetRoomsRibbon extends React.Component<IProps, IState> {
                     title={room.name}
                     image={room.coverPic} 
                     actions={[
-                    <SimpleButton title="Подробнее" link={'/cabinet/base/' + this.props.baseId + '/room/' + room.id} />
+                        <SimpleButton title="Подробнее" link={'/cabinet/base/' + this.props.baseId + '/room/' + room.id} />
                     ]}
                 >
                 </RCard>

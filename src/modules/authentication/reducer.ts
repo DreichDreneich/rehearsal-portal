@@ -5,6 +5,8 @@ import {
 } from 'models';
 
 const initialState: any = {
+    user: null,
+    //ToDO delete
     userId: null
 }
 
@@ -22,6 +24,10 @@ const user = (state: IUserState = initialState, action: IReduxAction)=> {
             } else {
                 return state;
             }
+        case types.REGISTER_START:
+            return state;
+        case types.REGISTER_END:
+            return Object.assign({}, state, {user: action.payload});
         default:
             return state;
     }
