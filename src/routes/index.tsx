@@ -8,7 +8,8 @@ import {
     Room,
     RoomsRibbon,
     Authentication,
-    Registration
+    Registration,
+    CreateBaseUser
 } from '../modules';
 
 export class RoutesProvider extends React.Component<null, null> {
@@ -17,9 +18,12 @@ export class RoutesProvider extends React.Component<null, null> {
             <Router history={hashHistory} >
                 <Route path="/" component={App} >
                     <IndexRedirect to="/ribbon" />
-                    <Route path="/cabinet" component={Cabinet} />
+
+                    <Route path="/cabinet" component={Cabinet}/>
+                    <Route path="/cabinet/createBaseUser" component={CreateBaseUser} />                    
                     <Route path="/cabinet/base/:baseId" component={Base} />
                     <Route path="/cabinet/base/:baseId/room/:roomId" component={Room} />
+
                     <Route path="/ribbon" component={RoomsRibbon} />
                     <Route path="/login" component={Authentication} />
                     <Route path="/registration" component={Registration} />

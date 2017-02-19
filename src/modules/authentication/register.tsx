@@ -50,10 +50,6 @@ class Registration extends React.Component<IProps, IState> {
         this.handleViewChange({email});
     }
 
-    handleLogin = () => {
-        this.props.router.push('/cabinet');
-    }
-
     render() {
         const {email, login, password} = this.state.view;
 

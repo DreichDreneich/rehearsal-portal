@@ -9,6 +9,7 @@ import {PasswordInput} from './inputs/passwordInput';
 import {GanttChart} from './ganttChart/ganttChart';
 import {RCard} from './card';
 import {RList} from './list';
+import {PageHeader} from './pageHeader';
 
 export {
     MainMenu,
@@ -21,5 +22,6 @@ export {
     PasswordInput,
     GanttChart,
     RCard,
-    RList
+    RList,
+    PageHeader
 }

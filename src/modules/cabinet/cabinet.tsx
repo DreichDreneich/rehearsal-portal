@@ -6,7 +6,7 @@ import {Router} from 'react-router';
 import {IBaseUser, IBase, IRoom, IReduxState} from 'models';
 import {cloneReactElement} from 'helpers';
 import {baseUserInfoLoad} from './actions/creators';
-import {Row, Label, SimpleButton, Panel, RCard} from 'components';
+import {Row, Label, SimpleButton, Panel, RCard, PageHeader} from 'components';
 import {CabinetBaseRibbon} from './components/cabinetBaseRibbon';
 
 interface IProps {
@@ -17,6 +17,8 @@ interface IProps {
     router: Router.InjectedRouter
 }
 
+
+//Компонент для BaseUser
 class Cabinet extends React.Component<IProps, void> {
     componentWillMount = () => {
         if(this.props.userId) {
@@ -71,7 +73,17 @@ class Cabinet extends React.Component<IProps, void> {
     render() {
         return (
             <div>
-                <h2> Личный кабинет </h2>
+                <PageHeader 
+                    title="Личный кабинет"
+                    actions={[
+                        {
+                            title:"Создать новую сеть баз",
+                            link: "cabinet/createBaseUser",
+                            enabled: () => true
+                        }
+                    ]}
+                />
+                <hr/>
                 {this.props.baseUser ? this.renderBaseUserInfo() : <h1>Loading...</h1>}
                 {this.props.bases ? this.renderBases() : <h1>Loading...</h1>}
             </div>

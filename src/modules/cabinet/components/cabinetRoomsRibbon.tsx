@@ -14,13 +14,12 @@ interface IState {
 export class CabinetRoomsRibbon extends React.Component<IProps, IState> {
     renderRoom(room: IRoom, key: any) {
         return (
-            <div className="rcard col-xs-12 col-md-4">
+            <div key={key} className="rcard col-xs-12 col-md-4">
                 <RCard
-                    key={key}
                     title={room.name}
                     image={room.coverPic} 
                     actions={[
-                        <SimpleButton title="Подробнее" link={'/cabinet/base/' + this.props.baseId + '/room/' + room.id} />
+                        <SimpleButton key="toRoom" title="Подробнее" link={'/cabinet/base/' + this.props.baseId + '/room/' + room.id} />
                     ]}
                 >
                 </RCard>
@@ -31,9 +30,7 @@ export class CabinetRoomsRibbon extends React.Component<IProps, IState> {
     render() {
         return (
             <div>
-                {this.props.rooms.map((base, idx) => {
-                    return this.renderRoom(base, idx);
-                })}
+                {this.props.rooms.map((room, idx) => this.renderRoom(room, idx))}
             </div>
         )
     }

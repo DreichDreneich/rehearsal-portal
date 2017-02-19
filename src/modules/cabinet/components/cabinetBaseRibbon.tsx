@@ -11,15 +11,14 @@ interface IState {
 }
 
 export class CabinetBaseRibbon extends React.Component<IProps, IState> {
-    renderBase(base: IBase, key: any) {
+    renderBase(base: IBase, key: number) {
         return (
-            <div className="rcard col-xs-12 col-md-4">
+            <div key={key} className="rcard col-xs-12 col-md-4">
                 <RCard
-                    key={key}
                     title={base.name}
                     image={base.pic} 
                     actions={[
-                        <SimpleButton title="Подробнее" link={'/cabinet/base/' + base.id} />
+                        <SimpleButton key="toBase" title="Подробнее" link={'/cabinet/base/' + base.id} />
                     ]}
                 >
                 </RCard>
